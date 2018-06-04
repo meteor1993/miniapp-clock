@@ -1,13 +1,41 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<view id="app" style="padding-bottom: 53px;">
+  <view>
+    <view>
+      <view id="vaptcha_container"></view>
+      <view class="head">
+        <view class="text1" style="color: rgb(255, 255, 255); font-size: 17px;">当前实时挑战金(元)</view>
+        <view class="money" style="color: rgb(255, 255, 255);">5266573</view>
+        <view class="text2" style="color: rgb(255, 255, 255);">
+        当前有
+          <view class="text3" style="color: rgb(242, 225, 187); display:initial;">8661</view>
+          人参与打卡挑战
+        </view>
+        <view class="headimgs">
+          <view style="padding-left: 3%;">
+            <image src="http://thirdwx.qlogo.cn/mmopen/YDkZuby68SSibUrUG2P1MXQiatHdiclG9JUnOvF4Csoo1diaqqcopiaryOOWib7dp76kgFwv7FgOmIk0CyMqrp8sd2CMRxMsQib6YAF/132" />
+            <image src="http://thirdwx.qlogo.cn/mmopen/YDkZuby68SSyRVEHVPPgCMkibV6MiaF0zY8YGtQibznE07oYselZmfBrh9Ik63bckPnZV5lrbtpwacGF9RucELnYFhtn3IS4Owv/132" />
+            <image src="http://thirdwx.qlogo.cn/mmopen/cdvZ6UQJlztma7tYuv5o9LVeVDGiaNP9Lgw9FElict2DhzW76X6GFicmUozOFwe21GfyKRmKmGqqRnbhSViaYf3KrSLv1rdQfnbz/132" />
+            <image src="http://thirdwx.qlogo.cn/mmopen/YDkZuby68SSyRVEHVPPgCEdfOfGnScsCGcib5RxicaicbPaicibhaOaIrT1Awjaa0tibZlbyLL1ic6yAibbK8Worg5gmplTqzCbqB1Iz/132" />
+            <image src="http://pay.wao021.cn/Static/sun.png" />
+            <image src="http://thirdwx.qlogo.cn/mmopen/DEk7iaAVAPpSib6sibPECIdEH7xlUbIWqCh66IpE4VzTUsFzr0KHvl0Aht7SBvn8L8puyIXnnk9Bs8hOQgLia93hH2Y0icRibylSDL/132" />
+            <image src="http://thirdwx.qlogo.cn/mmopen/cdvZ6UQJlzvh10akWwbhibtqYjDFcyrpcZGZz95FibkicujvPeMEFNnoZFpDDZUWFeKltiakmF6XpRWql8oIzIIpWKB79ABc6ibX4/132" />
+            <image src="http://thirdwx.qlogo.cn/mmopen/PiajxSqBRaELubUUlkJ6OL13cZ94Dn4zwHyic5Rqm0o371JIE3SBsRb0bgg0RcpKibVIlCGKLqWWnqIkqxzAbUibFg/132" />
+            <image src="http://thirdwx.qlogo.cn/mmopen/TYIvkoUSdWzkLs5r9GENOpYpibVy0wwdysRPvIRtPNxJB0jrffeeBOw3mDRl2acAg9QVV9pLwcAIWWzL42ItNP1icQ7WLLwSpY/132" />
+            <image alt="" src="http://thirdwx.qlogo.cn/mmopen/KFiaW14OP1HiczGshR1zlUpibJFAGZM4bHNib4icLZU2IiaXEt3Hts0F71OrYrc4kC69F7eXEV45KVbXNhgibh4h2pr37Gp0fl7oQ1f/132" />
+          </view>
+        </view>
+        <view style='height: 50rpx'></view>
+        <view class="rule-title" style="color: rgb(255, 255, 255); position: relative; z-index: 50;">
+          挑战规则>
+        </view>
+        <image src="https://zaoqi.chuangkapai.com/addons/hai105_daka/static/img/view.png" style="width: 100%; height: auto; position: absolute; left: 0px; bottom: 0px; z-index: 1; height:200rpx;">
+        </image>
+        <view class="dog cleardog"></view>
+      </view>
+      <view class="pay">
+        
+      </view>
+    </view>
   </view>
 </view>
