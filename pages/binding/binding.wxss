@@ -1,0 +1,7 @@
+/* pages/binding/binding.wxss */
+.page__bd_spacing {
+  padding: 50rpx;
+}
+.head {
+    text-align: center;
+}

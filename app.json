@@ -1,7 +1,9 @@
 {
-  "pages":[
+  "pages": [
+    "pages/binding/binding",
     "pages/index/index",
     "pages/logs/logs"
+    
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -9,11 +11,11 @@
     "navigationBarBackgroundColor": "#f8f8f8",
     "backgroundColor": "#f8f8f8"
   },
-    "networkTimeout": {
-      "request": 10000,
-      "connectSocket": 10000,
-      "uploadFile": 10000,
-      "downloadFile": 10000
-    },
-    "debug": true
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
 }
