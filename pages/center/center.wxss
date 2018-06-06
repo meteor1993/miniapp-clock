@@ -1,0 +1,26 @@
+/* pages/center/center.wxss */
+.my-head {
+    background-image: -webkit-linear-gradient(top,#175D7A 2%,#298492 50%,#3DABAF 99%);
+    background-image: linear-gradient(-180deg,#175D7A 2%,#298492 50%,#3DABAF 99%);
+    position: relative;
+}
+.money {
+    color: #1cc721;
+    font-size: 50px;
+    padding: 0px 0;
+    font-family: DINAlternate-Bold;
+    text-align: center;
+}
+.top-item {
+    padding: 10px 0px;
+    color: #fff;
+    text-align: center;
+}
+.top-number {
+    font-size: 18px;
+    color: #fff;
+}
+.top-text {
+    font-size: 10px;
+    color: #fff;
+}

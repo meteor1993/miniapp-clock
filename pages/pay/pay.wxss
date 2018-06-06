@@ -1,0 +1,4 @@
+/* pages/pay/pay.wxss */
+.weui-cell__ft {
+  color: black;
+}
