@@ -1,62 +1,65 @@
 <!--pages/center/center.wxml-->
-<view id="app" style="padding-bottom: 53px; height: 100%;">
-  <view style="height: 100%;">
-    <view class="page__bd page__bd_spacing my-head" style="height: 100%;">
-      <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
-        ####
-      </view>
-      <view class="money" style="color: rgb(255, 255, 255);">0</view>
-      <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
-        ####
-      </view>
-      <view class="money" style="color: rgb(255, 255, 255);">18</view>
-      <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
-        我的信息
-      </view>
-      <view class="weui-flex" style="padding: 10px;">
-        <view class="weui-flex__item">
-          <view class="placeholder top-item">
-              <view class="top-number">13633406174</view>
-              <view class="top-text">我的手机</view>
+<view class="page">
+  <view id="app">
+    <view>
+      <view class="page__bd page__bd_spacing my-head">
+        <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
+          累计奖励(元)
+        </view>
+        <view class="money" style="color: rgb(255, 255, 255);">0</view>
+        <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
+          累计打卡（天）
+        </view>
+        <view class="money" style="color: rgb(255, 255, 255);">18</view>
+        <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
+          我的信息
+        </view>
+        <view class="weui-flex" style="padding: 10px;">
+          <view class="weui-flex__item">
+            <view class="placeholder top-item">
+                <view class="top-number">13633406174</view>
+                <view class="top-text">我的手机</view>
+            </view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="placeholder top-item">
+                <view class="top-number">4.20</view>
+                <view class="top-text">今日奖励（元）</view>
+            </view>
           </view>
         </view>
-        <view class="weui-flex__item">
-          <view class="placeholder top-item">
-              <view class="top-number">4.20</view>
-              <view class="top-text">今日奖励（元）</view>
+        <view class="weui-flex" style="padding: 10px;">
+          <view class="weui-flex__item">
+            <view class="placeholder top-item">
+                <view class="top-number">0.00</view>
+                <view class="top-text">我的投入（元）</view>
+            </view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="placeholder top-item">
+                <view class="top-number">0.00</view>
+                <view class="top-text">我的余额（元）</view>
+            </view>
           </view>
         </view>
-      </view>
-      <view class="weui-flex" style="padding: 10px;">
-        <view class="weui-flex__item">
-          <view class="placeholder top-item">
-              <view class="top-number">0.00</view>
-              <view class="top-text">我的投入（元）</view>
+        <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
+          今日统计
+        </view>
+        <view class="weui-flex" style="padding: 10px;">
+          <view class="weui-flex__item">
+            <view class="placeholder top-item">
+                <view class="top-number">5343563</view>
+                <view class="top-text">打卡金额</view>
+            </view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="placeholder top-item">
+                <view class="top-number">8470</view>
+                <view class="top-text">未打卡金额</view>
+            </view>
           </view>
         </view>
-        <view class="weui-flex__item">
-          <view class="placeholder top-item">
-              <view class="top-number">0.00</view>
-              <view class="top-text">我的余额（元）</view>
-          </view>
-        </view>
-      </view>
-      <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
-        今日统计
-      </view>
-      <view class="weui-flex" style="padding: 10px;">
-        <view class="weui-flex__item">
-          <view class="placeholder top-item">
-              <view class="top-number">5343563</view>
-              <view class="top-text">打卡金额</view>
-          </view>
-        </view>
-        <view class="weui-flex__item">
-          <view class="placeholder top-item">
-              <view class="top-number">8470</view>
-              <view class="top-text">未打卡金额</view>
-          </view>
-        </view>
+        <view style='height: 50rpx;'></view>
       </view>
     </view>
   </view>

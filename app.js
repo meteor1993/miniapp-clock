@@ -13,13 +13,30 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
           url: 'https://mobile.kaixindaka.com/dailyclock/miniapp/user/login',
-          method: 'GET',
+          method: 'POST',
           dataType: 'json',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded' // 默认值
+          },
           data: {
             code: res.code
           },
           success: res => {
-            console.log(res);
+            console.log(res.header);
+            for (let key in res.header) {
+              if (key === "Set-Cookie") {
+                var list = res.header[key].split(";");
+                wx.setStorageSync('sessionId', list[0].split("=")[1]);
+                console.log("sessionid:" + wx.getStorageSync('sessionId'));
+              }
+              // console.log(key)
+            }
+            // for (let cookie of res.data) {
+            //   if (cookie.name === 'JSESSIONID') {
+            //     that.globalData.sessionId = cookie.value;
+            //   }
+            // }
+            
           }
         })
       }

@@ -1,0 +1,4 @@
+<!--pages/tabBarRole/tabBarRole.wxml-->
+<view class="page">
+挑战规则
+</view>

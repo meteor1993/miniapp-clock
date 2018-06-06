@@ -1,10 +1,12 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/binding/binding",
     "pages/pay/pay",
     "pages/center/center",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/role/role",
+    "pages/logs/logs",
+    "pages/tabBarRole/tabBarRole"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -16,11 +18,18 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "参与挑战",
+        "iconPath": "/image/rF7IIyc65i07qqY160560y1fFnu17r.png"
       },
       {
-        "pagePath": "pages/logs/logs",
-        "text": "日志"
+        "pagePath": "pages/center/center",
+        "text": "个人中心",
+        "iconPath": "/image/eRjJriUSvTRPgtIj2JgCRicIcpJucr.png"
+      },
+      {
+        "pagePath": "pages/tabBarRole/tabBarRole",
+        "text": "参与挑战",
+        "iconPath": "image/atZU6UQTg99LTUCTiXpZuf6bIi9Cec.png"
       }
     ]
   },

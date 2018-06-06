@@ -16,6 +16,16 @@ Page({
     })
   },
   onLoad: function () {
+    console.log("load-----sessionid:" + wx.getStorageSync('sessionId'));
+    wx.request({
+      url: 'https://mobile.kaixindaka.com/dailyclock/miniapp/clock/index',
+      method: 'POST',
+      header: { 'Content-Type': 'application/x-www-form-urlencoded', 'Cookie': 'JSESSIONID=' + wx.getStorageSync('sessionId')},
+      dataType: 'json',
+      success: res => {
+        console.log(res);
+      }
+    })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -43,12 +53,19 @@ Page({
       })
     }
   },
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+
+  tiaozhanguize: function() {
+    wx.navigateTo({
+      url: '../role/role'
     })
   }
 })
