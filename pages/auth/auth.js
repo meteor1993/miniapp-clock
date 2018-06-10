@@ -1,4 +1,4 @@
-// pages/pay/pay.js
+// pages/auth/auth.js
 Page({
 
   /**
@@ -12,14 +12,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.productNo);
+  
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    wx.hideLoading();
   },
 
   /**
@@ -62,5 +62,26 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  auth: function() {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          wx.showModal({
+            content: '授权失败，请重新授权',
+            showCancel: false,
+            success: function (res) {
+              
+            }
+          });
+        }
+      }
+    })
+    
   }
 })

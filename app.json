@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/auth/auth",
     "pages/binding/binding",
     "pages/pay/pay",
     "pages/center/center",
@@ -10,7 +11,7 @@
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "WeUI for 小程序",
+    "navigationBarTitleText": "开心打卡",
     "navigationBarBackgroundColor": "#f8f8f8",
     "backgroundColor": "#f8f8f8"
   },
