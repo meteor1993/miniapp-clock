@@ -21,6 +21,17 @@ Page({
     })
   },
   onLoad: function () {
+
+  },
+
+  onReady: function() {
+    
+  },
+
+  /**
+    * 生命周期函数--监听页面显示
+    */
+  onShow: function () {
     // 获取服务端token
     wx.request({
       url: app.globalData.baseUrl + '/miniapp/getToken',
@@ -147,9 +158,9 @@ Page({
       }
     })
     // 获取用户信息
-    
 
-    
+
+
 
 
     // if (app.globalData.userInfo) {
@@ -178,19 +189,6 @@ Page({
     //     }
     //   })
     // }
-
-
-  },
-
-  onReady: function() {
-    
-  },
-
-  /**
-    * 生命周期函数--监听页面显示
-    */
-  onShow: function () {
-    
   },
 
   open: function() {
@@ -230,10 +228,7 @@ Page({
           itemList: this.data.productList,
           success: function (res) {
             if (!res.cancel) {
-              wx.showLoading({
-                title: '数据加载',
-                mask: true
-              })
+            
               wx.navigateTo({
                 url: '../pay/pay?productNo=' + res.tapIndex,
               })

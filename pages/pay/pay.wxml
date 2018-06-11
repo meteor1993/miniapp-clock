@@ -4,13 +4,13 @@
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
           <view class="weui-cell__bd">商品名称</view>
-          <view class="weui-cell__ft">统一开心打卡规则并支付挑战金</view>
+          <view class="weui-cell__ft">同意开心打卡规则并支付挑战金</view>
       </view>
   </view>
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
           <view class="weui-cell__bd">订单编号</view>
-          <view class="weui-cell__ft">说明文字</view>
+          <view class="weui-cell__ft">{{orderNo}}</view>
       </view>
   </view>
   <view class="weui-cells weui-cells_after-title">
@@ -22,29 +22,29 @@
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
           <view class="weui-cell__bd">商品价格</view>
-          <view class="weui-cell__ft" style='color: green'>￥10.00元</view>
+          <view class="weui-cell__ft" style='color: green'>￥{{orderMoney}}元</view>
       </view>
   </view>
   <view class="weui-cells__title"></view>
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
           <view class="weui-cell__bd">还需支付</view>
-          <view class="weui-cell__ft">￥10.00元</view>
+          <view class="weui-cell__ft">￥{{orderMoney}}元</view>
       </view>
   </view>
   <view class="weui-cells__title">支付方式</view>
   <view class="weui-panel weui-panel_access">
     <view class="weui-panel__bd">
-      <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+      <view bindtap='payByBalance' class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
               <image class="weui-media-box__thumb" src="https://zaoqi.chuangkapai.com/app/resource/images/money.png" />
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
               <view class="weui-media-box__title">余额</view>
-              <view class="weui-media-box__desc">￥1.00</view>
+              <view class="weui-media-box__desc">￥{{balance}}</view>
           </view>
-      </navigator>
-      <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+      </view>
+      <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
               <image class="weui-media-box__thumb" src="https://zaoqi.chuangkapai.com/app/resource/images/wx-icon.png" />
           </view>
@@ -52,7 +52,7 @@
               <view class="weui-media-box__title">微信</view>
               <view class="weui-media-box__desc">微信支付，安全便捷</view>
           </view>
-      </navigator>
+      </view>
     </view>
   </view>
 </view>

@@ -1,18 +1,70 @@
 // pages/pay/pay.js
+const app = getApp();
+var util = require("../../utils/util.js");
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    balance: '0.00',
+    orderMoney: '',
+    orderNo: '',
+    productNo: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.productNo);
+    wx.showLoading({
+      title: '数据加载',
+      mask: true
+    })
+    this.setData({
+      productNo: options.productNo
+    });
+    wx.request({
+      url: app.globalData.baseUrl + '/miniapp/pay/saveWxPayOrderModel',
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        'token': wx.getStorageSync('token')
+      },
+      data: {
+        productNo: options.productNo
+      },
+      success: res => {
+        if (res.data.resultCode === "1") {
+          this.setData({
+            balance: util.number_format(res.data.resultData.balance, 2, ".", ","),
+            orderMoney: util.number_format(res.data.resultData.orderMoney, 2, ".", ","),
+            orderNo: res.data.resultData.orderNo
+          });
+          wx.hideLoading();
+        } else {
+          wx.showModal({
+            content: '网络异常，请重试～',
+            showCancel: false,
+            success: function (res) {
+
+            }
+          });
+        }
+        
+      },
+      fail: res => {
+        wx.showModal({
+          content: '网络异常，请重试～',
+          showCancel: false,
+          success: function (res) {
+
+          }
+        });
+      }
+    })
   },
 
   /**
@@ -62,5 +114,47 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  payByBalance: function() {
+    if (parseFloat(this.data.balance) * 100 < parseFloat(this.data.orderMoney) * 100) { // 如果当前余额小于需支付金额
+      console.log("balance:" + this.data.balance + "---orderMoney:" + this.data.orderMoney);
+      wx.showModal({
+        content: '余额不足，请先充值～',
+        showCancel: false,
+        success: function (res) {
+
+        }
+      });
+    } else { // 调用后台，完成支付
+      console.log("++++++++++++++++++++++++++");
+      wx.request({
+        url: app.globalData.baseUrl + '/miniapp/pay/payByBalance',
+        method: 'POST',
+        dataType: 'json',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded', // 默认值
+          'token': wx.getStorageSync('token')
+        },
+        data: {
+          productNo: this.data.productNo,
+          orderNo: this.data.orderNo
+        },
+        success: res => {
+          console.log(res);
+          if (res.data.resultCode === "1") {
+            wx.showModal({
+              content: res.data.resultMsg,
+              showCancel: false,
+              success: function (res) {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            });
+          }
+        }
+      });
+    }
   }
 })
