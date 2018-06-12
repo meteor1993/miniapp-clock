@@ -156,5 +156,38 @@ Page({
         }
       });
     }
+  },
+
+  payByWechat: function() {
+    wx.request({
+      url: app.globalData.baseUrl + '/miniapp/pay/payByBalance',
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        'token': wx.getStorageSync('token')
+      },
+      data: {
+        productNo: this.data.productNo,
+        orderNo: this.data.orderNo
+      },
+      success: res => {
+        if (res.data.resultCode === "1") {
+          wx.requestPayment({
+            timeStamp: res.data.resultData.timeStamp,
+            nonceStr: res.data.resultData.nonceStr,
+            package: res.data.resultData.package,
+            signType: res.data.resultData.signType,
+            paySign: res.data.resultData.paySign,
+            success: res => {
+              console.log("success===============" + res);
+            },
+            fail: res => {
+              console.log("fail===============" + res);
+            }
+          })
+        }
+      }
+    })
   }
 })
