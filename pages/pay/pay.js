@@ -160,7 +160,7 @@ Page({
 
   payByWechat: function() {
     wx.request({
-      url: app.globalData.baseUrl + '/miniapp/pay/payByBalance',
+      url: app.globalData.baseUrl + '/miniapp/pay/unifiedOrder',
       method: 'POST',
       dataType: 'json',
       header: {

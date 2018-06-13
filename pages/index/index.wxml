@@ -27,8 +27,12 @@
         </view>
         <view class="pay">
           <view style="padding: 0px 5%;">
-              <button wx:if="{{account_type0 == 1}}" class="weui-btn weui-btn_primary" id="showIOSActionSheet" href="javascript:;" style="color: rgb(255, 255, 255); background: rgb(255, 128, 25) none repeat scroll 0% 0%; transform: none; border-radius: 0px; box-shadow: rgb(255, 128, 25) -1px 1px 5px;">早起打卡</button>
+              <button wx:if="{{account_type0 == 1}}" class="weui-btn weui-btn_primary" id="showIOSActionSheet" href="javascript:;" style="color: rgb(255, 255, 255); background: rgb(255, 128, 25) none repeat scroll 0% 0%; transform: none; border-radius: 0px; box-shadow: rgb(255, 128, 25) -1px 1px 5px;">打卡倒计时{{countDownHour}}时{{countDownMinute}}分{{countDownSecond}}秒</button>
               <button wx:else="{{account_type0 != 1}}" class="weui-btn weui-btn_primary" id="showIOSActionSheet" href="javascript:;" style="color: rgb(255, 255, 255); background: rgb(255, 128, 25) none repeat scroll 0% 0%; transform: none; border-radius: 0px; box-shadow: rgb(255, 128, 25) -1px 1px 5px;" bindtap="open">同意规则并参与挑战</button>
+          </view>
+          <view style="padding: 5% 5%;">
+            <button wx:if="{{account_type0 == 1}}" class="weui-btn weui-btn_primary" id="showIOSActionSheet" href="javascript:;" style="color: rgb(255, 255, 255); background: rgb(233, 79, 79); transform: none; border-radius: 0px;" bindtap="open">(已投入￥{{useBalance0}})追加投入</button>
+            <button wx:else="{{account_type0 != 1}}" class="weui-btn weui-btn_primary" id="showIOSActionSheet" href="javascript:;" style="color: rgb(255, 255, 255); background: rgb(233, 79, 79); transform: none; border-radius: 0px;" >明日平台补贴2000元</button>
           </view>
         </view>
         <view class="result" style="text-align: center;">

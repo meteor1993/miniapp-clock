@@ -12,7 +12,11 @@ Page({
     wechatNickName: '',
     wechatHeadImgUrl: '',
     userClockLogDate: '',
-    wechatMpUserModelList: []
+    wechatMpUserModelList: [],
+    useBalance0: '',
+    countDownHour: '00',
+    countDownMinute: '00',
+    countDownMinute: '00'
   },
   //事件处理函数
   bindViewTap: function() {
@@ -116,6 +120,13 @@ Page({
                                       wechatHeadImgUrl: resultData.wechatMpUserModelFirst.wechatHeadImgUrl,
                                       userClockLogDate: resultData.userClockLogModel.createStringDate
                                     });
+                                    // 如果当前用户有账户信息
+                                    if (resultData.userAccountModel != null) {
+                                      this.setData({
+                                        account_type0: resultData.userAccountModel.type0,
+                                        useBalance0: resultData.userAccountModel.useBalance0
+                                      });
+                                    }
                                     wx.hideLoading();
                                   } else {
                                     wx.showModal({
