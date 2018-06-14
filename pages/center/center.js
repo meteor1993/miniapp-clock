@@ -69,6 +69,7 @@ Page({
           // 我的手机
           if (resultData.wechatMpUserModel != null && resultData.wechatMpUserModel.mobile != null) {
             this.setData({
+              phoneFlag: true,
               phone: resultData.wechatMpUserModel.mobile
             });
           }
@@ -159,5 +160,31 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  // 绑定手机
+  bindMobile: function() {
+    wx.navigateTo({
+      url: '../binding/binding',
+    })
+  },
+
+  // 提现操作
+  getMoney: function() {
+    if (this.data.phoneFlag === false) {
+      wx.showModal({
+        content: '请先绑定手机~',
+        showCancel: false,
+        success: function (res) {
+          wx.navigateTo({
+            url: '../binding/binding',
+          })
+        }
+      });
+    } else {
+      wx.navigateTo({
+        url: '../getMoney/getMoney',
+      })
+    }
   }
 })

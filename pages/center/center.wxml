@@ -18,11 +18,11 @@
           <view class="weui-flex__item">
             <view class="placeholder top-item">
                 <view wx:if="{{phoneFlag}}" class="top-number" >{{phone}}</view>
-                <button bindtap='bindPhone' wx:if="{{!phoneFlag}}">绑定手机</button>
+                <button class="weui-btn mini-btn" type="primary" size="mini" bindtap='bindMobile' wx:if="{{!phoneFlag}}">绑定手机</button>
                 <view class="top-text">我的手机</view>
             </view>
           </view>
-          <view class="weui-flex__item">
+          <view class="weui-flex__item" bindtap='getMoney'>
             <view class="placeholder top-item">
                 <view class="top-number">{{todayBalance0}}</view>
                 <view class="top-text">今日奖励（元）</view>

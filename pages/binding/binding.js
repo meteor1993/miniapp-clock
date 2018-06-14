@@ -1,6 +1,7 @@
 // pages/binding/binding.js
+const app = getApp();
 function countdown(that) {
-  var second = 60;
+  var second = 10;
   var time = setInterval(function () {
     second --;
     that.setData({
@@ -23,7 +24,9 @@ Page({
    */
   data: {
     codeMsg: '获取验证码',
-    disable: false
+    disable: false,
+    mobile: '',
+    code: ''
   },
 
   /**
@@ -82,16 +85,124 @@ Page({
   
   },
 
+  mobileInput: function(e) {
+    this.setData({
+      mobile: e.detail.value
+    });
+  },
+
+  codeInput: function(e) {
+    this.setData({
+      code: e.detail.value
+    });
+  },
+
   /**
    * 获取验证码
    */
   getCode: function() {
-    countdown(this);
+    console.log(this.data.mobile)
+    var flag = false;
+    if (this.data.mobile.length != 11) {
+      wx.showModal({
+        content: '请输入正确的手机号',
+        showCancel: false,
+        success: function (res) {
+          flag = false;
+        }
+      });
+    } else {
+      flag = true;
+    }
+    if (flag) {
+      wx.request({
+        url: app.globalData.baseUrl + '/miniapp/sms/sendSMS',
+        method: 'POST',
+        dataType: 'json',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded', // 默认值
+          'token': wx.getStorageSync('token')
+        },
+        data: {
+          mobile: this.data.mobile
+        },
+        success: res => {
+          var that = this;
+          if (res.data.resultCode === "1") {
+            wx.showModal({
+              content: '短信发送成功',
+              showCancel: false,
+              success: function (res) {
+                countdown(that);
+              }
+            });
+          } else {
+            wx.showModal({
+              content: '网络异常，请重试～',
+              showCancel: false,
+              success: function (res) {
+
+              }
+            });
+          }
+        },
+        fail: res => {
+          wx.showModal({
+            content: '网络异常，请重试～',
+            showCancel: false,
+            success: function (res) {
+      
+            }
+          });
+        }
+      })
+    }
   },
 
   binding: function() {
-    wx.navigateTo({
-      url: '/pages/index/index'
+    wx.request({
+      url: app.globalData.baseUrl + '/miniapp/sms/binding',
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        'token': wx.getStorageSync('token')
+      },
+      data: {
+        mobile: this.data.mobile,
+        code: this.data.code
+      },
+      success: res => {
+        if (res.data.resultCode === "1") {
+          wx.showModal({
+            content: '绑定成功',
+            showCancel: false,
+            success: function (res) {
+              wx.navigateBack({
+                delta: 1
+              });
+            }
+          });
+        } else {
+          wx.showModal({
+            content: res.data.resultMsg,
+            showCancel: false,
+            success: function (res) {
+
+            }
+          });
+        }
+      },
+      fail: res => {
+        wx.showModal({
+          content: '网络异常，请重试～',
+          showCancel: false,
+          success: function (res) {
+
+          }
+        });
+      }
     })
+    
   }
 })

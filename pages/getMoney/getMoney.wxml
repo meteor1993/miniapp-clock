@@ -1,0 +1,40 @@
+<!--pages/getMoney/getMoney.wxml-->
+<view class="page">
+  <view class="weui-cells__title">提现到微信零钱</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">余额(元)</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" value='{{balance}}' disabled='true'/>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+          <view class="weui-label">金额(元)</view>
+      </view>
+      <view class="weui-cell__bd">
+          <input class="weui-input" type='digit' placeholder="请输入提现金额" bindinput='moneyInput' value='{{money}}' />
+      </view>
+      <view class="weui-cell__ft">
+          <view class="weui-vcode-btn" bindtap='quanbu'>全部提现</view>
+      </view>
+    </view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <button class="weui-btn" type="primary" disabled='{{disable}}' bindtap="getMoney">确认提现</button>
+  </view>
+  <view class="cell">
+  温馨提示：
+  </view>
+  <view class="cell">
+  1.提现金额最小为1元,最高为{{maxMoney}}元,超过{{maxMoney}}元请联系客服退款,退款直接秒入微信零钱
+  </view>
+  <view class="cell">
+  2.客服二维码
+  </view>
+  <view class="cell" style=''>
+    <image src='../../image/kf.jpg' style='width:320rpx;height:320rpx;'></image>
+  </view>
+</view>
