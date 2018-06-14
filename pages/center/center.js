@@ -1,18 +1,30 @@
 // pages/center/center.js
+const app = getApp();
+var util = require("../../utils/util.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    phoneFlag: false,
+    amountSum: '0',
+    userClockLogSize: '0',
+    phone: '',
+    todayBalance0: '0.00',
+    useBalance0: '0.00',
+    balance: '0.00',
+    clockBalanceSum: '0',
+    unClockBalanceSum: '0'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    wx.showLoading({
+      title: '数据加载',
+    })
   },
 
   /**
@@ -26,7 +38,92 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    wx.request({
+      url: app.globalData.baseUrl + '/miniapp/center/center',
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        'token': wx.getStorageSync('token')
+      },
+      data: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'token': wx.getStorageSync('token')
+      },
+      success: res => {
+        console.log(res);
+        let resultData = res.data.resultData;
+        if (res.data.resultCode === "1") {
+          // 累计奖励
+          if (resultData.amountSum != null) {
+            this.setData({
+              amountSum: util.number_format(resultData.amountSum, 2, ".", ",")
+            });
+          }
+          // 累计打卡
+          if (resultData.userClockLogSize != null) {
+            this.setData({
+              userClockLogSize: resultData.userClockLogSize
+            });
+          }
+          // 我的手机
+          if (resultData.wechatMpUserModel != null && resultData.wechatMpUserModel.mobile != null) {
+            this.setData({
+              phone: resultData.wechatMpUserModel.mobile
+            });
+          }
+          // 今日奖励
+          if (resultData.userAccountModel != null && resultData.userAccountModel.todayBalance0 != null) {
+            this.setData({
+              todayBalance0: util.number_format(resultData.userAccountModel.todayBalance0, 2, ".", ",")
+            });
+          }
+          // 我的投入
+          if (resultData.userAccountModel != null && resultData.userAccountModel.useBalance0 != null) {
+            this.setData({
+              useBalance0: util.number_format(resultData.userAccountModel.useBalance0, 2, ".", ",")
+            });
+          }
+          // 我的余额
+          if (resultData.userAccountModel != null && resultData.userAccountModel.balance != null) {
+            this.setData({
+              balance: util.number_format(resultData.userAccountModel.balance, 2, ".", ",")
+            });
+          }
+          // 打卡金额
+          if (resultData.clockBalanceSum != null) {
+            this.setData({
+              clockBalanceSum: util.number_format(resultData.clockBalanceSum, null, ".", ",")
+            });
+          }
+          // 未打卡金额
+          if (resultData.unClockBalanceSum != null) {
+            this.setData({
+              unClockBalanceSum: util.number_format(resultData.unClockBalanceSum, null, ".", ",")
+            });
+          }
+          wx.hideLoading();
+        } else {
+          wx.showModal({
+            content: '网络异常，请重试～',
+            showCancel: false,
+            success: function (res) {
+              wx.hideLoading();
+            }
+          });
+        }
+       
+      },
+      fail: res => {
+        wx.showModal({
+          content: '网络异常，请重试～',
+          showCancel: false,
+          success: function (res) {
+            wx.hideLoading();
+          }
+        });
+      }
+    })
   },
 
   /**

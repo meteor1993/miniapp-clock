@@ -13,8 +13,8 @@
             人参与打卡挑战
           </view>
           <view class="headimgs">
-            <view style="padding-left: 3%;" wx:for="{{wechatMpUserModelList}}">
-              <image src="{{item.wechatHeadImgUrl}}" />
+            <view style="padding-left: 3%;" >
+              <image wx:for="{{wechatMpUserModelList}}" src="{{item.wechatHeadImgUrl}}" />
             </view>
           </view>
           <view style='height: 50rpx'></view>
