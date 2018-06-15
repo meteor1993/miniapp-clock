@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/getMoney/getMoney",
+    
     "pages/index/index",
     "pages/auth/auth",
     "pages/binding/binding",
@@ -8,8 +8,8 @@
     "pages/center/center",
     "pages/role/role",
     "pages/logs/logs",
-    "pages/tabBarRole/tabBarRole"
-    
+    "pages/tabBarRole/tabBarRole",
+    "pages/getMoney/getMoney"
   ],
   "window": {
     "navigationBarTextStyle": "black",

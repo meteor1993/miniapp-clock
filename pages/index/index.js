@@ -16,7 +16,7 @@ Page({
     useBalance0: '',
     countDownHour: '00',
     countDownMinute: '00',
-    countDownMinute: '00'
+    countDownSecond: '00'
   },
   //事件处理函数
   bindViewTap: function() {
@@ -115,11 +115,23 @@ Page({
                                       userCount0: resultData.userCount0,
                                       todayClockUserSum: resultData.todayClockUserSum,
                                       todayUnClockUserSum: resultData.needClockUserSum - resultData.todayClockUserSum,
-                                      wechatMpUserModelList: resultData.wechatMpUserModelList,
-                                      wechatNickName: resultData.wechatMpUserModelFirst.wechatNickName,
-                                      wechatHeadImgUrl: resultData.wechatMpUserModelFirst.wechatHeadImgUrl,
-                                      userClockLogDate: resultData.userClockLogModel.createStringDate
+                                      wechatMpUserModelList: resultData.wechatMpUserModelList
                                     });
+                                    if (resultData.wechatMpUserModelFirst != null && resultData.wechatMpUserModelFirst.wechatNickName != null) {
+                                      this.setData({
+                                        wechatNickName: resultData.wechatMpUserModelFirst.wechatNickName
+                                      });
+                                    }
+                                    if (resultData.wechatMpUserModelFirst != null && resultData.wechatMpUserModelFirst.wechatHeadImgUrl != null) {
+                                      this.setData({
+                                        wechatHeadImgUrl: resultData.wechatMpUserModelFirst.wechatHeadImgUrl
+                                      });
+                                    }
+                                    if (resultData.wechatMpUserModelFirst != null && resultData.userClockLogModel.createStringDate != null) {
+                                      this.setData({
+                                        userClockLogDate: resultData.userClockLogModel.createStringDate
+                                      });
+                                    }
                                     // 如果当前用户有账户信息
                                     if (resultData.userAccountModel != null) {
                                       this.setData({

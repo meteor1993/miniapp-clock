@@ -172,6 +172,10 @@ Page({
         orderNo: this.data.orderNo
       },
       success: res => {
+        wx.showLoading({
+          title: 'Loading',
+        });
+        console.log(res);
         if (res.data.resultCode === "1") {
           wx.requestPayment({
             timeStamp: res.data.resultData.timeStamp,
@@ -179,11 +183,32 @@ Page({
             package: res.data.resultData.package,
             signType: res.data.resultData.signType,
             paySign: res.data.resultData.paySign,
-            success: res => {
-              console.log("success===============" + res);
+            success: function(res) {
+              wx.hideLoading();
+              console.log("success===============" + res.errMsg);
+              wx.request({
+                url: app.globalData.baseUrl + '/miniapp/pay/minipaySuccess',
+                method: 'POST',
+                dataType: 'json',
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded', // 默认值
+                  'token': wx.getStorageSync('token')
+                },
+                success: res => {
+
+                },
+                fail: res => {
+
+                }
+              })
             },
-            fail: res => {
-              console.log("fail===============" + res);
+            fail: function (res) {
+              wx.hideLoading();
+              console.log("fail===============" + res.errMsg);
+            },
+            complete: function(res) {
+              wx.hideLoading();
+              console.log("fail===============" + res.errMsg);
             }
           })
         }

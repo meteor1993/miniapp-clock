@@ -171,6 +171,9 @@ Page({
             that.setData({
               disable: false
             });
+            wx.navigateTo({
+              url: 'msg_success'
+            });
           } else {
             wx.showModal({
               content: '网络异常，请重试～',
