@@ -199,6 +199,15 @@ Page({
               console.log("fail===============" + res.errMsg);
             }
           })
+        } else {
+          wx.hideLoading();
+          wx.showModal({
+            content: res.data.resultMsg,
+            showCancel: false,
+            success: function (res) {
+
+            }
+          });
         }
       }
     })

@@ -3,7 +3,7 @@
   padding: 50rpx;
 }
 .cell {
-  color: #ccc;
+  color: #888;
   padding:0 15px;
   position:relative;
   display:-webkit-box;
