@@ -175,29 +175,22 @@ Page({
               url: 'msg_success'
             });
           } else {
-            wx.showModal({
-              content: '网络异常，请重试～',
-              showCancel: false,
-              success: function (res) {
-                flag = false;
-                that.setData({
-                  disable: false
-                });
-              }
+            that.setData({
+              disable: false
+            });
+            wx.navigateTo({
+              url: 'msg_fail'
             });
           }
         },
         fail: res => {
-          wx.showModal({
-            content: '网络异常，请重试～',
-            showCancel: false,
-            success: function (res) {
-              flag = false;
-              that.setData({
-                disable: false
-              });
-            }
+          that.setData({
+            disable: false
           });
+          wx.navigateTo({
+            url: 'msg_fail'
+          });
+          
         }
       })
     }

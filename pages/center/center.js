@@ -94,13 +94,13 @@ Page({
           // 打卡金额
           if (resultData.clockBalanceSum != null) {
             this.setData({
-              clockBalanceSum: util.number_format(resultData.clockBalanceSum, null, ".", ",")
+              clockBalanceSum: util.number_format(resultData.clockBalanceSum, 2, ".", ",")
             });
           }
           // 未打卡金额
           if (resultData.unClockBalanceSum != null) {
             this.setData({
-              unClockBalanceSum: util.number_format(resultData.unClockBalanceSum, null, ".", ",")
+              unClockBalanceSum: util.number_format(resultData.unClockBalanceSum, 2, ".", ",")
             });
           }
           wx.hideLoading();
@@ -120,7 +120,7 @@ Page({
           content: '网络异常，请重试～',
           showCancel: false,
           success: function (res) {
-            wx.hideLoading();
+            
           }
         });
       }

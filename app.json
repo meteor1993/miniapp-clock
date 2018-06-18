@@ -5,11 +5,15 @@
     "pages/auth/auth",
     "pages/binding/binding",
     "pages/pay/pay",
+    "pages/pay/msg_success",
+    "pages/pay/msg_fail",
     "pages/center/center",
     "pages/role/role",
     "pages/logs/logs",
     "pages/tabBarRole/tabBarRole",
-    "pages/getMoney/getMoney"
+    "pages/getMoney/getMoney",
+    "pages/getMoney/msg_success",
+    "pages/getMoney/msg_fail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

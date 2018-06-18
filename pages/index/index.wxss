@@ -49,8 +49,8 @@
     overflow: hidden;
 }
 .headimgs image {
-    width: 100rpx;
-    height: 100rpx;
+    width: 62.5rpx;
+    height: 62.5rpx;
     border-radius: 50%;
     margin-left: -3%;
 }

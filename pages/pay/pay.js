@@ -177,37 +177,25 @@ Page({
         });
         console.log(res);
         if (res.data.resultCode === "1") {
+          console.log(res.data.resultData);
           wx.requestPayment({
-            timeStamp: res.data.resultData.timeStamp,
-            nonceStr: res.data.resultData.nonceStr,
-            package: res.data.resultData.package,
-            signType: res.data.resultData.signType,
-            paySign: res.data.resultData.paySign,
-            success: function(res) {
+            'timeStamp': res.data.resultData.timeStamp,
+            'nonceStr': res.data.resultData.nonceStr,
+            'package': 'prepay_id=' + res.data.resultData.package,
+            'signType': res.data.resultData.signType,
+            'paySign': res.data.resultData.paySign,
+            'success': function(res) {
               wx.hideLoading();
+              wx.navigateTo({
+                url: 'msg_success'
+              });
               console.log("success===============" + res.errMsg);
-              wx.request({
-                url: app.globalData.baseUrl + '/miniapp/pay/minipaySuccess',
-                method: 'POST',
-                dataType: 'json',
-                header: {
-                  'content-type': 'application/x-www-form-urlencoded', // 默认值
-                  'token': wx.getStorageSync('token')
-                },
-                success: res => {
-
-                },
-                fail: res => {
-
-                }
-              })
             },
-            fail: function (res) {
+            'fail': function (res) {
               wx.hideLoading();
-              console.log("fail===============" + res.errMsg);
-            },
-            complete: function(res) {
-              wx.hideLoading();
+              wx.navigateTo({
+                url: 'msg_fail'
+              });
               console.log("fail===============" + res.errMsg);
             }
           })

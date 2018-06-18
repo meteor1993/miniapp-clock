@@ -22,7 +22,7 @@
                 <view class="top-text">我的手机</view>
             </view>
           </view>
-          <view class="weui-flex__item" bindtap='getMoney'>
+          <view class="weui-flex__item">
             <view class="placeholder top-item">
                 <view class="top-number">{{todayBalance0}}</view>
                 <view class="top-text">今日奖励（元）</view>
@@ -36,7 +36,7 @@
                 <view class="top-text">我的投入（元）</view>
             </view>
           </view>
-          <view class="weui-flex__item">
+          <view class="weui-flex__item" bindtap='getMoney'>
             <view class="placeholder top-item">
                 <view class="top-number">{{balance}}</view>
                 <view class="top-text">我的余额（元）</view>

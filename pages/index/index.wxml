@@ -27,7 +27,10 @@
         </view>
         <view class="pay">
           <view style="padding: 0px 5%;">
-              <button wx:if="{{account_type0 == 1}}" class="weui-btn weui-btn_primary" id="showIOSActionSheet" href="javascript:;" style="color: rgb(255, 255, 255); background: rgb(255, 128, 25) none repeat scroll 0% 0%; transform: none; border-radius: 0px; box-shadow: rgb(255, 128, 25) -1px 1px 5px;">打卡倒计时{{countDownHour}}时{{countDownMinute}}分{{countDownSecond}}秒</button>
+              <button wx:if="{{account_type0 == 1 && !clockFlag}}" class="weui-btn weui-btn_primary" id="showIOSActionSheet" href="javascript:;" style="color: rgb(255, 255, 255); background: rgb(255, 128, 25) none repeat scroll 0% 0%; transform: none; border-radius: 0px; box-shadow: rgb(255, 128, 25) -1px 1px 5px;">打卡倒计时{{clockDate}}</button>
+              <form wx:elif="{{account_type0 == 1 && clockFlag}}" bindsubmit="formSubmit" report-submit="true" bindreset="formReset">
+                <button class="weui-btn weui-btn_primary" id="showIOSActionSheet" href="javascript:;" form-type="submit" type="default" style="color: rgb(255, 255, 255); background: rgb(255, 128, 25) none repeat scroll 0% 0%; transform: none; border-radius: 0px; box-shadow: rgb(255, 128, 25) -1px 1px 5px;">正在打卡</button>
+              </form>
               <button wx:else="{{account_type0 != 1}}" class="weui-btn weui-btn_primary" id="showIOSActionSheet" href="javascript:;" style="color: rgb(255, 255, 255); background: rgb(255, 128, 25) none repeat scroll 0% 0%; transform: none; border-radius: 0px; box-shadow: rgb(255, 128, 25) -1px 1px 5px;" bindtap="open">同意规则并参与挑战</button>
           </view>
           <view style="padding: 5% 5%;">
@@ -45,11 +48,17 @@
         </view>
       </view>
       <view class="todayStar">
-        <view class="flexbox">
+        <view class="flexbox" wx:if="{{wechatMpUserModelFirstIs}}">
           <view class="imgbox" style='background: rgba(0, 0, 0, 0) url("{{wechatHeadImgUrl}}") no-repeat scroll 0px 0px / cover;'></view>
           <view class="label label1">早起之星</view>
           <view class="name">{{wechatNickName}}</view>
           <view class="time">{{userClockLogDate}}打卡</view>
+        </view>
+        <view class="flexbox" wx:if="{{maxContinuousClockUserIs}}">
+          <view class="imgbox" style='background: rgba(0, 0, 0, 0) url("{{maxContinuousWechatHeadImgUrl}}") no-repeat scroll 0px 0px / cover;'></view>
+          <view class="label label1">毅力之星</view>
+          <view class="name">{{maxContinuousWechatNickName}}</view>
+          <view class="time">连续{{maxContinuousNum}}次</view>
         </view>
       </view>
     </view>

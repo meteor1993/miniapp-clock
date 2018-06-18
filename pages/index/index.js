@@ -9,23 +9,28 @@ Page({
     todayUnClockUserSum: 0,
     account_type0: 0,
     productList: [],
-    wechatNickName: '',
-    wechatHeadImgUrl: '',
-    userClockLogDate: '',
+    wechatMpUserModelFirstIs: false, // 早起之星
+    wechatNickName: '', // 早起之星用户名
+    wechatHeadImgUrl: '', // 早起之星用户头像
+    userClockLogDate: '', // 早起之星打卡时间
     wechatMpUserModelList: [],
     useBalance0: '',
-    countDownHour: '00',
-    countDownMinute: '00',
-    countDownSecond: '00'
+    maxContinuousClockUserIs: false, // 毅力之星
+    maxContinuousWechatHeadImgUrl: '', // 毅力之星头像
+    maxContinuousWechatNickName: '', // 毅力之星用户名
+    maxContinuousNum: '', // 毅力之星连续次数
+    nowDate: 0, // 现在时间
+    toStartDate: 0, // 目标打卡时间
+    toEndDate: 0,
+    clockFlag: false, // 当前是否为打卡时间标记位
+    clockDate: '00:00:00'
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onLoad: function () {
 
+  onLoad: function () {
+    wx.showLoading({
+      title: '数据加载',
+      mask: true
+    })
   },
 
   onReady: function() {
@@ -114,9 +119,18 @@ Page({
                                       userBalance0Sum: resultData.userBalance0Sum,
                                       userCount0: resultData.userCount0,
                                       todayClockUserSum: resultData.todayClockUserSum,
-                                      todayUnClockUserSum: resultData.needClockUserSum - resultData.todayClockUserSum,
-                                      wechatMpUserModelList: resultData.wechatMpUserModelList
+                                      todayUnClockUserSum: resultData.todayUnClockUserSum,
+                                      wechatMpUserModelList: resultData.wechatMpUserModelList,
+                                      nowDate: parseInt(resultData.nowDate / 1000),
+                                      toDate: parseInt(resultData.toDate / 1000),
+                                      clockFlag: resultData.clockFlag
                                     });
+                                    // 早起之星判断
+                                    if (resultData.wechatMpUserModelFirst != null && resultData.userClockLogModel.createStringDate != null) {
+                                      this.setData({
+                                        wechatMpUserModelFirstIs: true
+                                      });
+                                    }
                                     if (resultData.wechatMpUserModelFirst != null && resultData.wechatMpUserModelFirst.wechatNickName != null) {
                                       this.setData({
                                         wechatNickName: resultData.wechatMpUserModelFirst.wechatNickName
@@ -132,6 +146,27 @@ Page({
                                         userClockLogDate: resultData.userClockLogModel.createStringDate
                                       });
                                     }
+                                    // 毅力之星
+                                    if (resultData.maxContinuousClockUserWechat != null && resultData.maxContinuousClockUserAccount.continuousClockNum != null) {
+                                      this.setData({
+                                        maxContinuousClockUserIs: true
+                                      });
+                                    }
+                                    if (resultData.maxContinuousClockUserWechat != null && resultData.maxContinuousClockUserWechat.wechatHeadImgUrl != null) {
+                                      this.setData({
+                                        maxContinuousWechatHeadImgUrl: resultData.maxContinuousClockUserWechat.wechatHeadImgUrl
+                                      });
+                                    }
+                                    if (resultData.maxContinuousClockUserWechat != null && resultData.maxContinuousClockUserWechat.wechatNickName != null) {
+                                      this.setData({
+                                        maxContinuousWechatNickName: resultData.maxContinuousClockUserWechat.wechatNickName
+                                      });
+                                    }
+                                    if (resultData.maxContinuousClockUserAccount != null && resultData.maxContinuousClockUserAccount.continuousClockNum != null) {
+                                      this.setData({
+                                        maxContinuousNum: resultData.maxContinuousClockUserAccount.continuousClockNum
+                                      });
+                                    }
                                     // 如果当前用户有账户信息
                                     if (resultData.userAccountModel != null) {
                                       this.setData({
@@ -139,13 +174,14 @@ Page({
                                         useBalance0: resultData.userAccountModel.useBalance0
                                       });
                                     }
+                                    this.count_down(this.data.toDate - this.data.nowDate);
                                     wx.hideLoading();
                                   } else {
                                     wx.showModal({
                                       content: '网络异常，请重试～',
                                       showCancel: false,
                                       success: function (res) {
-
+                                        wx.hideLoading();
                                       }
                                     });
                                   }
@@ -177,43 +213,20 @@ Page({
         })
       },
       fail: e => {
+        wx.showModal({
+          content: '网络异常，请重试～',
+          showCancel: false,
+          success: function (res) {
 
+          }
+        });
       }
     })
-    // 获取用户信息
-
-
-
-
-
-    // if (app.globalData.userInfo) {
-    //   this.setData({
-    //     userInfo: app.globalData.userInfo,
-    //     hasUserInfo: true
-    //   })
-    // } else if (this.data.canIUse){
-    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //   // 所以此处加入 callback 以防止这种情况
-    //   app.userInfoReadyCallback = res => {
-    //     this.setData({
-    //       userInfo: res.userInfo,
-    //       hasUserInfo: true
-    //     })
-    //   }
-    // } else {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   wx.getUserInfo({
-    //     success: res => {
-    //       app.globalData.userInfo = res.userInfo
-    //       this.setData({
-    //         userInfo: res.userInfo,
-    //         hasUserInfo: true
-    //       })
-    //     }
-    //   })
-    // }
   },
 
+  /**
+   * 加载产品列表
+   */
   open: function() {
     wx.showLoading({
       title: '数据加载',
@@ -269,12 +282,110 @@ Page({
         })
       }
     });
-    
   },
 
+  /**
+   * 挑战规则
+   */
   tiaozhanguize: function() {
     wx.navigateTo({
       url: '../role/role'
+    })
+  },
+
+  /**
+   * 开启首页倒计时定时任务
+   */
+  count_down: function (duringMs) {
+    let that = this
+
+    // 渲染倒计时时钟  
+    that.setData({
+      clockDate: that.date_format(duringMs)
+    });
+
+    if (duringMs <= 0) {
+      that.setData({
+        clockFlag: true
+      });
+      // timeout则跳出递归  
+      return;
+    }
+    setTimeout(function () {
+      // 放在最后--  
+      duringMs -= 1;
+      that.count_down(duringMs);
+    } , 1000)
+  },
+
+  /**
+   * 格式化倒计时
+   */
+  date_format: function (micro_second) {
+    let that = this
+    // 小时位  
+    let hr = that.fill_zero_prefix(Math.floor(micro_second / 3600));
+    // 分钟位  
+    let min = that.fill_zero_prefix(Math.floor((micro_second - hr * 3600) / 60));
+    // 秒位  
+    let sec = that.fill_zero_prefix(micro_second % 60);// equal to => var sec = second % 60; 
+    return hr + ":" + min + ":" + sec + " ";
+  },
+
+  /**
+   * 分秒位数补0
+   */
+  fill_zero_prefix: function (num) {
+    return num < 10 ? "0" + num : num
+  },
+
+  /**
+   * 打卡
+   */
+  formSubmit: function (e) {
+    wx.showLoading({
+      title: '打卡中',
+    })
+    console.log('表单id:', e.detail.formId);
+    wx.request({
+      url: app.globalData.baseUrl + '/miniapp/clock/clock',
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'token': wx.getStorageSync('token')
+      },
+      data: {
+        formid: e.detail.formId
+      },
+      success: res => {
+        wx.hideLoading();
+        if (res.data.resultCode === "1") {
+          wx.showModal({
+            content: '打卡成功',
+            showCancel: false,
+            success: function (res) {
+            }
+          })
+        } else {
+          wx.showModal({
+            content: res.data.resultMsg,
+            showCancel: false,
+            success: function (res) {
+            }
+          })
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showModal({
+          content: '网络异常，请重试～',
+          showCancel: false,
+          success: function (res) {
+
+          }
+        })
+      }
     })
   }
 })
