@@ -15,7 +15,8 @@ Page({
     useBalance0: '0.00',
     balance: '0.00',
     clockBalanceSum: '0',
-    unClockBalanceSum: '0'
+    unClockBalanceSum: '0',
+    rewardBalance: '0'
   },
 
   /**
@@ -54,10 +55,15 @@ Page({
         console.log(res);
         let resultData = res.data.resultData;
         if (res.data.resultCode === "1") {
-          // 累计奖励
-          if (resultData.amountSum != null) {
+          if (resultData.userAccountModel != null && resultData.userAccountModel.rewardBalance != null) {
             this.setData({
-              amountSum: util.number_format(resultData.amountSum, 2, ".", ",")
+              rewardBalance: util.number_format(resultData.userAccountModel.rewardBalance, 0, ".", ",")
+            });
+          }
+          // 累计奖励
+          if (resultData.userAccountModel != null && resultData.userAccountModel.balanceSum0 != null) {
+            this.setData({
+              amountSum: util.number_format(resultData.userAccountModel.balanceSum0, 2, ".", ",")
             });
           }
           // 累计打卡
@@ -159,7 +165,14 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '开心打卡赚零花',
+      path: '/pages/index/index?openid=' + wx.getStorageSync("openid"),
+      imageUrl: 'http://attach.bbs.miui.com/forum/201404/16/085754clksjcsljklmhk5s.jpg',
+      success(e) {
+        
+      }
+    }
   },
 
   // 绑定手机

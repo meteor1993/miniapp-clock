@@ -43,6 +43,20 @@
             </view>
           </view>
         </view>
+        <view class="weui-flex" style="padding: 10px;">
+          <view class="weui-flex__item">
+            <view class="placeholder top-item">
+                <view class="top-number">{{rewardBalance}}</view>
+                <view class="top-text">我的奖励金（元）</view>
+            </view>
+          </view>
+          <view class="weui-flex__item" bindtap='getMoney'>
+            <view class="placeholder top-item">
+                <view class="top-number"></view>
+                <view class="top-text"></view>
+            </view>
+          </view>
+        </view>
         <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
           今日统计
         </view>

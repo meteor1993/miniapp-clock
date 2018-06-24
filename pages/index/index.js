@@ -23,17 +23,38 @@ Page({
     toStartDate: 0, // 目标打卡时间
     toEndDate: 0,
     clockFlag: false, // 当前是否为打卡时间标记位
-    clockDate: '00:00:00'
+    clockDate: '00:00:00',
+    subsidyFlag: 0,
+    subsidy: 0,
+    userAccountList: [],
+    shareOpenid: ''
   },
 
-  onLoad: function () {
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '开心打卡赚零花',
+      path: '/pages/index/index?openid=' + wx.getStorageSync("openid"),
+      imageUrl: 'http://attach.bbs.miui.com/forum/201404/16/085754clksjcsljklmhk5s.jpg',
+      success(e) {
+
+      }
+    }
+  },
+
+  onLoad: function (options) {
+    this.setData({
+      shareOpenid: options.openid
+    });
     wx.showLoading({
       title: '数据加载',
       mask: true
     })
   },
 
-  onReady: function() {
+  onReady: function () {
     
   },
 
@@ -73,6 +94,7 @@ Page({
                 code: res.code
               },
               success: res => {
+                wx.setStorageSync('openid', res.data.resultData.session.openid);
                 wx.setStorageSync('sessionKey', res.data.resultData.session.sessionKey);
                 wx.getSetting({
                   success: res => {
@@ -96,7 +118,8 @@ Page({
                               signature: res.signature,
                               rawData: res.rawData,
                               encryptedData: res.encryptedData,
-                              iv: res.iv
+                              iv: res.iv,
+                              openid: this.data.shareOpenid
                             },
                             success: res => {
                               console.log("++++++" + res.data);
@@ -123,7 +146,9 @@ Page({
                                       wechatMpUserModelList: resultData.wechatMpUserModelList,
                                       nowDate: parseInt(resultData.nowDate / 1000),
                                       toDate: parseInt(resultData.toDate / 1000),
-                                      clockFlag: resultData.clockFlag
+                                      clockFlag: resultData.clockFlag,
+                                      subsidy: resultData.subsidy,
+                                      subsidyFlag: resultData.subsidyFlag
                                     });
                                     // 早起之星判断
                                     if (resultData.wechatMpUserModelFirst != null && resultData.userClockLogModel.createStringDate != null) {
@@ -220,6 +245,28 @@ Page({
 
           }
         });
+      }
+    }),
+    wx.request({
+      url: app.globalData.baseUrl + '/miniapp/miniAccount/findMpAccountList',
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'token': wx.getStorageSync('token')
+      },
+      data: {
+        page: 0,
+        size: 10
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.resultCode === "1") {
+          this.setData({
+            userAccountList: res.data.resultData.list
+          });
+          console.log(this.data.userAccountList.length);
+        }
       }
     })
   },
