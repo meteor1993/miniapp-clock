@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/auth/auth",
     "pages/binding/binding",
@@ -13,7 +12,8 @@
     "pages/tabBarRole/tabBarRole",
     "pages/getMoney/getMoney",
     "pages/getMoney/msg_success",
-    "pages/getMoney/msg_fail"
+    "pages/getMoney/msg_fail",
+    "pages/share/share"
   ],
   "window": {
     "navigationBarTextStyle": "black",

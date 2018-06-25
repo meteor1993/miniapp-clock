@@ -26,6 +26,8 @@ Page({
     clockDate: '00:00:00',
     subsidyFlag: 0,
     subsidy: 0,
+    balanceSum0: '0',
+    continuousClockNum: '0',
     userAccountList: [],
     shareOpenid: ''
   },
@@ -35,7 +37,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '开心打卡赚零花',
+      title: '我已连续打卡' + this.data.continuousClockNum + '天,累积奖金' + this.data.balanceSum0 + '元',
       path: '/pages/index/index?openid=' + wx.getStorageSync("openid"),
       imageUrl: 'http://attach.bbs.miui.com/forum/201404/16/085754clksjcsljklmhk5s.jpg',
       success(e) {
@@ -196,7 +198,9 @@ Page({
                                     if (resultData.userAccountModel != null) {
                                       this.setData({
                                         account_type0: resultData.userAccountModel.type0,
-                                        useBalance0: resultData.userAccountModel.useBalance0
+                                        useBalance0: resultData.userAccountModel.useBalance0,
+                                        continuousClockNum: resultData.userAccountModel.continuousClockNum,
+                                        balanceSum0: resultData.userAccountModel.balanceSum0
                                       });
                                     }
                                     this.count_down(this.data.toDate - this.data.nowDate);
@@ -408,19 +412,27 @@ Page({
       success: res => {
         wx.hideLoading();
         if (res.data.resultCode === "1") {
-          wx.showModal({
-            content: '打卡成功',
-            showCancel: false,
-            success: function (res) {
-            }
+          wx.navigateTo({
+            url: '../share/share?msg=打卡成功&continuousClockNum=' + this.data.continuousClockNum + '&balanceSum0=' + this.data.balanceSum0,
           })
+          // wx.showModal({
+          //   content: '打卡成功',
+          //   showCancel: false,
+          //   success: function (res) {
+              
+          //   }
+          // })
         } else {
-          wx.showModal({
-            content: res.data.resultMsg,
-            showCancel: false,
-            success: function (res) {
-            }
+          wx.navigateTo({
+            url: '../share/share?msg=' + res.data.resultMsg + '&continuousClockNum=' + this.data.continuousClockNum + '&balanceSum0=' + this.data.balanceSum0,
           })
+          // wx.showModal({
+          //   content: res.data.resultMsg,
+          //   showCancel: false,
+          //   success: function (res) {
+              
+          //   }
+          // })
         }
       },
       fail: res => {
@@ -429,7 +441,7 @@ Page({
           content: '网络异常，请重试～',
           showCancel: false,
           success: function (res) {
-
+            
           }
         })
       }
