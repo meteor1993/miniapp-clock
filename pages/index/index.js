@@ -47,9 +47,11 @@ Page({
   },
 
   onLoad: function (options) {
-    this.setData({
-      shareOpenid: options.openid
-    });
+    if (options.openid != null) {
+      this.setData({
+        shareOpenid: options.openid
+      });
+    }
     wx.showLoading({
       title: '数据加载',
       mask: true
@@ -57,13 +59,6 @@ Page({
   },
 
   onReady: function () {
-    
-  },
-
-  /**
-    * 生命周期函数--监听页面显示
-    */
-  onShow: function () {
     // 获取服务端token
     wx.request({
       url: app.globalData.baseUrl + '/miniapp/getToken',
@@ -199,8 +194,12 @@ Page({
                                       this.setData({
                                         account_type0: resultData.userAccountModel.type0,
                                         useBalance0: resultData.userAccountModel.useBalance0,
-                                        continuousClockNum: resultData.userAccountModel.continuousClockNum,
                                         balanceSum0: resultData.userAccountModel.balanceSum0
+                                      });
+                                    }
+                                    if (resultData.userAccountModel != null && resultData.userAccountModel.continuousClockNum != null) {
+                                      this.setData({
+                                        continuousClockNum: resultData.userAccountModel.continuousClockNum
                                       });
                                     }
                                     this.count_down(this.data.toDate - this.data.nowDate);
@@ -251,28 +250,36 @@ Page({
         });
       }
     }),
-    wx.request({
-      url: app.globalData.baseUrl + '/miniapp/miniAccount/findMpAccountList',
-      method: 'POST',
-      dataType: 'json',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'token': wx.getStorageSync('token')
-      },
-      data: {
-        page: 0,
-        size: 10
-      },
-      success: res => {
-        console.log(res);
-        if (res.data.resultCode === "1") {
-          this.setData({
-            userAccountList: res.data.resultData.list
-          });
-          console.log(this.data.userAccountList.length);
+      wx.request({
+        url: app.globalData.baseUrl + '/miniapp/miniAccount/findMpAccountList',
+        method: 'POST',
+        dataType: 'json',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'token': wx.getStorageSync('token')
+        },
+        data: {
+          page: 0,
+          size: 10
+        },
+        success: res => {
+          console.log(res);
+          if (res.data.resultCode === "1") {
+            this.setData({
+              userAccountList: res.data.resultData.list
+            });
+            console.log(this.data.userAccountList.length);
+          }
         }
-      }
-    })
+      })
+  },
+
+  /**
+    * 生命周期函数--监听页面显示
+    */
+  onShow: function () {
+
+    
   },
 
   /**
