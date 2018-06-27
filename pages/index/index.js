@@ -419,6 +419,9 @@ Page({
       success: res => {
         wx.hideLoading();
         if (res.data.resultCode === "1") {
+          this.setData({
+            continuousClockNum: parseInt(this.data.continuousClockNum) + parseInt(1)
+          });
           wx.navigateTo({
             url: '../share/share?msg=打卡成功&continuousClockNum=' + this.data.continuousClockNum + '&balanceSum0=' + this.data.balanceSum0,
           })
