@@ -68,9 +68,12 @@ Page({
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
-          wx.navigateBack({
-            delta: 1
+          wx.reLaunch({
+            url: '/pages/index/index',
           })
+          // wx.navigateBack({
+          //   delta: 1
+          // })
         } else {
           wx.showModal({
             content: '授权失败，请重新授权',

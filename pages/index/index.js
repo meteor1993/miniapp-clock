@@ -29,7 +29,8 @@ Page({
     balanceSum0: '0',
     continuousClockNum: '0',
     userAccountList: [],
-    shareOpenid: ''
+    shareOpenid: '',
+    channel: ''
   },
 
   /**
@@ -52,13 +53,15 @@ Page({
         shareOpenid: options.openid
       });
     }
+    if (options.channel != null) {
+      this.setData({
+        channel: options.channel
+      });
+    }
     wx.showLoading({
       title: '数据加载',
       mask: true
-    })
-  },
-
-  onReady: function () {
+    });
     // 获取服务端token
     wx.request({
       url: app.globalData.baseUrl + '/miniapp/getToken',
@@ -116,7 +119,8 @@ Page({
                               rawData: res.rawData,
                               encryptedData: res.encryptedData,
                               iv: res.iv,
-                              openid: this.data.shareOpenid
+                              openid: this.data.shareOpenid,
+                              channel: this.data.channel
                             },
                             success: res => {
                               console.log("++++++" + res.data);
@@ -272,6 +276,10 @@ Page({
           }
         }
       })
+  },
+
+  onReady: function () {
+    
   },
 
   /**
