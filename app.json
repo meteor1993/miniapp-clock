@@ -12,12 +12,12 @@
     "pages/tabBarRole/tabBarRole",
     "pages/getMoney/getMoney",
     "pages/getMoney/msg_success",
-    "pages/getMoney/msg_fail",
-    "pages/share/share"
+    "pages/share/share",
+    "pages/getMoney/msg_fail"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "开心打卡",
+    "navigationBarTitleText": "阳光早晨每一天",
     "navigationBarBackgroundColor": "#f8f8f8",
     "backgroundColor": "#f8f8f8"
   },

@@ -125,18 +125,7 @@ Page({
         }
       });
     } else {
-      if (parseFloat(this.data.money * 100) > parseFloat(this.data.maxMoney * 100)) {
-        wx.showModal({
-          content: '您输入的金额超过' + that.data.maxMoney + '元,请联系管理员完成退款',
-          showCancel: false,
-          success: function (res) {
-            flag = false;
-            that.setData({
-              disable: false
-            });
-          }
-        });
-      } else if (parseFloat(this.data.money * 100) > parseFloat(this.data.balance * 100)) {
+      if (parseFloat(this.data.money * 100) > parseFloat(this.data.balance * 100)) {
         wx.showModal({
           content: '您输入的金额超过余额,请重新输入',
           showCancel: false,
@@ -179,7 +168,7 @@ Page({
               disable: false
             });
             wx.navigateTo({
-              url: 'msg_fail'
+              url: 'msg_fail?msg=' + res.data.resultMsg
             });
           }
         },

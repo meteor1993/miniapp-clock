@@ -1,1 +1,16 @@
 /* pages/share/share.wxss */
+.back{
+  width: 750rpx;
+  height: 937rpx;
+  background-image:url('https://yangguangzaochen.oss-cn-shanghai.aliyuncs.com/redbag.jpg');
+  -moz-background-size:100% 100%; /* 老版本的 Firefox */
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+}
+.yanse {
+  padding: 60rpx 40rpx;
+  color: #FFE973;
+  font-size: 50rpx;
+  text-align: center;
+  font-weight: 7;
+}

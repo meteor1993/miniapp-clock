@@ -1,8 +1,8 @@
 <!--pages/share/share.wxml-->
-<view>
-{{msg}}
+<view class='back'>
+<view class='yanse'>{{msg}}</view>
 
 </view>
-<view style='padding: 20rpx;'>
+<view style='padding: 50rpx 20rpx;'>
 <button id="showIOSActionSheet" open-type="share" href="javascript:;" style="color: rgb(255, 255, 255); background: rgb(255, 128, 25) none repeat scroll 0% 0%; transform: none; border-radius: 0px; box-shadow: rgb(255, 128, 25) -1px 1px 5px;" bindtap="open">分享</button>
 </view>

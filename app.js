@@ -6,9 +6,9 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // this.globalData.baseUrl = 'http://localhost:8081/dailyclock';
+    this.globalData.baseUrl = 'http://localhost:8081/dailyclock';
     // this.globalData.baseUrl = 'https://mobile.kaixindaka.com/dailyclock';
-    this.globalData.baseUrl = 'https://miniapp.kaixindaka.com/dailyclock';
+    // this.globalData.baseUrl = 'https://miniapp.kaixindaka.com/dailyclock';
 
     
 

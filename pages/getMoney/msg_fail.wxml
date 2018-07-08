@@ -5,7 +5,7 @@
         </view>
         <view class="weui-msg__text-area">
             <view class="weui-msg__title">提现失败</view>
-            <view class="weui-msg__desc">提现失败，请稍后重试或联系客服，谢谢</view>
+            <view class="weui-msg__desc">{{msg}}</view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
