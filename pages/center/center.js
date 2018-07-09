@@ -16,7 +16,8 @@ Page({
     balance: '0.00',
     clockBalanceSum: '0',
     unClockBalanceSum: '0',
-    rewardBalance: '0'
+    rewardBalance: '0',
+    month: '2018-07'
   },
 
   /**

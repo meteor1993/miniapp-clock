@@ -78,4 +78,25 @@
       </view>
     </view>
   </view>
+  <view class="weui-cells__title">奖励金查询</view>
+  <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">年月</view>
+      </view>
+      <view class="weui-cell__bd">
+          <picker bindchange="" mode="date" fields='month' value='{{month}}'>
+              <view class="weui-select weui-select_in-select-after">{{month}}</view>
+          </picker>
+      </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">2018-01-01</view>
+          <view class="weui-cell__ft" style='color: red'>+￥3.14</view>
+      </view>
+      <view class="weui-cell">
+          <view class="weui-cell__bd">2018-01-01</view>
+          <view class="weui-cell__ft" style='color: green'>-￥0.01</view>
+      </view>
+  </view>
 </view>

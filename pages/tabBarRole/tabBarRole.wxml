@@ -1,4 +1,2 @@
 <!--pages/tabBarRole/tabBarRole.wxml-->
-<view class="page">
-挑战规则
-</view>
+<web-view src="https://miniapp.kaixindaka.com/rule.html" />
