@@ -9,6 +9,14 @@ const formatTime = date => {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+const formatDate = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+
+  return [year, month, day].map(formatNumber).join('-')
+}
+
 /**
   * 参数说明：
   * number：要格式化的数字
@@ -47,6 +55,7 @@ const formatNumber = n => {
 }
 
 module.exports = {
+  formatDate: formatDate,
   formatTime: formatTime,
   number_format: number_format
 }

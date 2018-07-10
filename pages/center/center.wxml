@@ -84,19 +84,16 @@
           <view class="weui-label">年月</view>
       </view>
       <view class="weui-cell__bd">
-          <picker bindchange="" mode="date" fields='month' value='{{month}}'>
+          <picker bindchange="changeMonth" mode="date" fields='month' value='{{month}}'>
               <view class="weui-select weui-select_in-select-after">{{month}}</view>
           </picker>
       </view>
   </view>
-  <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell">
-          <view class="weui-cell__bd">2018-01-01</view>
-          <view class="weui-cell__ft" style='color: red'>+￥3.14</view>
-      </view>
-      <view class="weui-cell">
-          <view class="weui-cell__bd">2018-01-01</view>
-          <view class="weui-cell__ft" style='color: green'>-￥0.01</view>
+  <view class="weui-cells weui-cells_after-title" wx:if="{{userAccountLogList.length > 0}}">
+      <view class="weui-cell" wx:for="{{userAccountLogList}}" wx:if="{{item.type == 2 || item.type == 7}}">
+          <view class="weui-cell__bd">{{item.createDate}}</view>
+          <view class="weui-cell__ft" style='color: red'>+￥{{item.amount}}</view>
       </view>
   </view>
+  <view class="weui-cells__title" style='text-align:center;' wx:else>暂无数据</view>
 </view>

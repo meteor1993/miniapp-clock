@@ -17,7 +17,8 @@ Page({
     clockBalanceSum: '0',
     unClockBalanceSum: '0',
     rewardBalance: '0',
-    month: '2018-07'
+    month: '',
+    userAccountLogList: []
   },
 
   /**
@@ -120,7 +121,6 @@ Page({
             }
           });
         }
-       
       },
       fail: res => {
         wx.showModal({
@@ -130,6 +130,40 @@ Page({
             
           }
         });
+      }
+    });
+    let d = new Date();
+    let nowDate = d.getFullYear() + "-" + change(d.getMonth() + 1);
+    this.setData({
+      month: nowDate
+    });
+    wx.request({
+      url: app.globalData.baseUrl + '/miniapp/center/findUserAccountLogList',
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        'token': wx.getStorageSync('token')
+      },
+      data: {
+        'date': this.data.month
+      },
+      success: res => {
+        this.setData({
+          userAccountLogList: res.data.resultData.list
+        });
+        for (var i = 0; i < this.data.userAccountLogList.length; i++) {
+          this.data.userAccountLogList[i].createDate = util.formatDate(new Date(this.data.userAccountLogList[i].createDate));
+          this.data.userAccountLogList[i].amount = util.number_format(this.data.userAccountLogList[i].amount, 2, ".", ",");
+        }
+        
+        this.setData({
+          userAccountLogList: this.data.userAccountLogList
+        });
+        console.log(this.data.userAccountLogList);
+      },
+      fail: res => {
+
       }
     })
   },
@@ -200,5 +234,53 @@ Page({
         url: '../getMoney/getMoney',
       })
     }
+  },
+
+  /**
+   * 月份变动
+   */
+  changeMonth: function(e) {
+    wx.showLoading({
+      title: '数据加载',
+    });
+    this.setData({
+      month: e.detail.value
+    });
+    wx.request({
+      url: app.globalData.baseUrl + '/miniapp/center/findUserAccountLogList',
+      method: 'POST',
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        'token': wx.getStorageSync('token')
+      },
+      data: {
+        'date': e.detail.value
+      },
+      success: res => {
+        this.setData({
+          userAccountLogList: res.data.resultData.list
+        });
+        for (var i = 0; i < this.data.userAccountLogList.length; i++) {
+          this.data.userAccountLogList[i].createDate = util.formatDate(new Date(this.data.userAccountLogList[i].createDate));
+          this.data.userAccountLogList[i].amount = util.number_format(this.data.userAccountLogList[i].amount, 2, ".", ",");
+        }
+
+        this.setData({
+          userAccountLogList: this.data.userAccountLogList
+        });
+        wx.hideLoading();
+      },
+      fail: res => {
+        wx.hideLoading();
+      }
+    })
   }
 })
+function change(t) {
+  if (t < 10) {
+    return "0" + t;
+  } else {
+    return t;
+  }
+}
