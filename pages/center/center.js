@@ -203,7 +203,7 @@ Page({
     return {
       title: '开心打卡赚零花',
       path: '/pages/index/index?openid=' + wx.getStorageSync("openid"),
-      imageUrl: 'http://attach.bbs.miui.com/forum/201404/16/085754clksjcsljklmhk5s.jpg',
+      imageUrl: 'https://yangguangzaochen.oss-cn-shanghai.aliyuncs.com/share.jpg',
       success(e) {
         
       }

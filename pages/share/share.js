@@ -70,7 +70,7 @@ Page({
     return {
       title: '我已连续打卡' + this.data.continuousClockNum + '天,累积奖金' + this.data.balanceSum0 + '元',
       path: '/pages/index/index?openid=' + wx.getStorageSync("openid"),
-      imageUrl: 'http://attach.bbs.miui.com/forum/201404/16/085754clksjcsljklmhk5s.jpg',
+      imageUrl: 'https://yangguangzaochen.oss-cn-shanghai.aliyuncs.com/share.jpg',
       success(e) {
 
       }
