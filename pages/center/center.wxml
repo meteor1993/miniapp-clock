@@ -4,7 +4,7 @@
     <view>
       <view class="page__bd page__bd_spacing my-head">
         <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
-          累计奖励(元)
+          累计打卡奖励(元)
         </view>
         <view class="money" style="color: rgb(255, 255, 255);">{{amountSum}}</view>
         <view style="color: rgb(255, 255, 255); font-size: 17px; margin: 0px auto; text-align: center; padding-top: 20px;">
@@ -78,7 +78,7 @@
       </view>
     </view>
   </view>
-  <view class="weui-cells__title">奖励金查询</view>
+  <view class="weui-cells__title">奖金查询</view>
   <view class="weui-cell weui-cell_select">
       <view class="weui-cell__hd weui-cell__hd_in-select-after">
           <view class="weui-label">年月</view>

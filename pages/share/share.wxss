@@ -14,3 +14,21 @@
   text-align: center;
   font-weight: 7;
 }
+.div_up {
+  position:fixed;
+  height:100%;
+  width:100%;
+  z-index:999;
+  display:block;
+  top:0;
+  left:0;
+  background-color:rgba(40, 40, 40, 0.70);
+  text-align: center;
+}
+.div_margin {
+  margin:60rpx 30rpx;
+  width:690rpx;
+}
+.div_right{
+  text-align: right;
+}

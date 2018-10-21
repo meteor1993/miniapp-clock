@@ -6,3 +6,13 @@
 <view style='padding: 50rpx 20rpx;'>
 <button id="showIOSActionSheet" open-type="share" href="javascript:;" style="color: rgb(255, 255, 255); background: rgb(255, 128, 25) none repeat scroll 0% 0%; transform: none; border-radius: 0px; box-shadow: rgb(255, 128, 25) -1px 1px 5px;" bindtap="open">分享</button>
 </view>
+<view class='div_up' wx:if="{{divIsShow}}">
+  <view class='div_margin'>
+    <view class='div_right'>
+      <image bindtap='closeDiv' style='width: 60rpx; height: 60rpx;' src='/image/yuanX.png'></image>
+    </view>
+    <view>
+      <image style='width: 600rpx; height: 900rpx' src='https://yangguangzaochen.oss-cn-shanghai.aliyuncs.com/outbonus.jpg'></image>
+    </view>
+  </view>
+</view>

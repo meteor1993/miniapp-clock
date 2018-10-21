@@ -159,6 +159,7 @@ Page({
   },
 
   payByWechat: function() {
+    let that = this;
     wx.request({
       url: app.globalData.baseUrl + '/miniapp/pay/unifiedOrder',
       method: 'POST',
@@ -187,7 +188,7 @@ Page({
             'success': function(res) {
               wx.hideLoading();
               wx.navigateTo({
-                url: 'msg_success'
+                url: 'msg_success?orderNo=' + that.data.orderNo
               });
               console.log("success===============" + res.errMsg);
             },
@@ -205,7 +206,6 @@ Page({
             content: res.data.resultMsg,
             showCancel: false,
             success: function (res) {
-
             }
           });
         }

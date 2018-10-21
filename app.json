@@ -13,7 +13,8 @@
     "pages/getMoney/getMoney",
     "pages/getMoney/msg_success",
     "pages/share/share",
-    "pages/getMoney/msg_fail"
+    "pages/getMoney/msg_fail",
+    "pages/getMoney/msg_warn"
   ],
   "window": {
     "navigationBarTextStyle": "black",

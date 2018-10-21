@@ -163,6 +163,13 @@ Page({
             wx.navigateTo({
               url: 'msg_success'
             });
+          } else if (res.data.resultCode === "2") {
+            that.setData({
+              disable: false
+            });
+            wx.navigateTo({
+              url: 'msg_warn?msg=' + res.data.resultMsg
+            });
           } else {
             that.setData({
               disable: false

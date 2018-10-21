@@ -7,7 +7,8 @@ Page({
   data: {
     msg: '',
     continuousClockNum: '0',
-    balanceSum0: '0'
+    balanceSum0: '0',
+    divIsShow: true
   },
 
   /**
@@ -75,5 +76,10 @@ Page({
 
       }
     }
+  },
+  closeDiv: function () {
+    this.setData({
+      divIsShow: false
+    });
   }
 })

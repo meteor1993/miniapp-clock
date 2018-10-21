@@ -30,7 +30,8 @@ Page({
     continuousClockNum: '0',
     userAccountList: [],
     shareOpenid: '',
-    channel: ''
+    channel: '',
+    divIsShow: true
   },
 
   /**
@@ -464,5 +465,11 @@ Page({
         })
       }
     })
+  },
+
+  closeDiv: function() {
+    this.setData({
+      divIsShow: false
+    });
   }
 })

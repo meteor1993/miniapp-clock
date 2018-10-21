@@ -10,8 +10,8 @@
     background-image: none;
 }
 .head {
-    background-image: -webkit-linear-gradient(top, #175D7A 2%, #1B667F 10%, #278190 30%, #28919B 43%, #42C2C3 63%, #FDFEDC 97%);
-    background-image: linear-gradient(-180deg, #175D7A 2%, #1B667F 10%, #278190 30%, #28919B 43%, #42C2C3 63%, #FDFEDC 97%);
+    background: url('https://yangguangzaochen.oss-cn-shanghai.aliyuncs.com/backimg.jpg') no-repeat center center;
+    background-size: cover;
     padding-bottom: 0px;
     position: relative;
     padding-bottom: 80px;
@@ -167,4 +167,22 @@
     background: url(https://zaoqi.chuangkapai.com/addons/hai105_daka/static/img/label3.png) 0 0 no-repeat;
     background-size: auto auto;
     background-size: contain;
+}
+.div_up {
+  position:fixed;
+  height:100%;
+  width:100%;
+  z-index:999;
+  display:block;
+  top:0;
+  left:0;
+  background-color:rgba(40, 40, 40, 0.70);
+  text-align: center;
+}
+.div_margin {
+  margin:60rpx 30rpx;
+  width:690rpx;
+}
+.div_right{
+  text-align: right;
 }

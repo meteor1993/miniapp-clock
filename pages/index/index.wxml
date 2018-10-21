@@ -21,9 +21,6 @@
           <view class="rule-title" bindtap='tiaozhanguize' style="color: rgb(255, 255, 255); position: relative; z-index: 50;">
             挑战规则>
           </view>
-          <image src="https://zaoqi.chuangkapai.com/addons/hai105_daka/static/img/view.png" style="width: 100%; height: auto; position: absolute; left: 0px; bottom: 0px; z-index: 1; height:200rpx;">
-          </image>
-          <view class="dog cleardog"></view>
         </view>
         <view class="pay">
           <view style="padding: 0px 5%;">
@@ -61,6 +58,10 @@
           <view class="time">连续{{maxContinuousNum}}次</view>
         </view>
       </view>
+      <view style='width: 670rpx; margin: 20rpx;background-color:#ddd; padding: 10rpx 20rpx'>
+        <view style='font-size: 20px;'>重要提示：</view>
+        <view style='font-size: 14px;'>每次支付的挑战金拥有独立21天的计算周期，最后一次打卡时间为最后一次支付挑战金日期累加后的第21天。</view>
+      </view>
       <view class="weui-panel weui-panel_access">
           <view class="weui-panel__hd">按☞挑战奖励＋影响奖励☜正序排列</view>
           <view class="weui-panel__bd">
@@ -71,11 +72,21 @@
                 <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                     <view class="weui-media-box__title">{{item[4]}}</view>
                     <view class="weui-media-box__desc">打卡时间:{{item[0]}}</view>
-                    <view class="weui-media-box__desc">累计打卡{{item[2]}}天，累计打卡金额{{item[1]}}元</view>
+                    <view class="weui-media-box__desc">累计打卡{{item[2]}}天，累计打卡奖励{{item[1]}}元</view>
                 </view>
             </navigator>
           </view>
       </view>
+    </view>
+  </view>
+</view>
+<view class='div_up' wx:if="{{divIsShow}}">
+  <view class='div_margin'>
+    <view class='div_right'>
+      <image bindtap='closeDiv' style='width: 60rpx; height: 60rpx;' src='/image/yuanX.png'></image>
+    </view>
+    <view>
+      <image style='width: 600rpx; height: 900rpx' src='https://yangguangzaochen.oss-cn-shanghai.aliyuncs.com/outbonus.jpg'></image>
     </view>
   </view>
 </view>

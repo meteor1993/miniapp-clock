@@ -4,8 +4,8 @@
             <icon type="success" size="93"></icon>
         </view>
         <view class="weui-msg__text-area">
-            <view class="weui-msg__title">支付成功</view>
-            <view class="weui-msg__desc">支付成功，有任何问题可以联系客服，谢谢</view>
+            <view class="weui-msg__title">支付完成</view>
+            <view class="weui-msg__desc">支付完成，有任何问题可以联系客服，谢谢</view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
